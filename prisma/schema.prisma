@@ -12,10 +12,13 @@ datasource db {
 
 model User {
   id Int @default(autoincrement()) @id
+  uid String @unique
   email String @unique
   name String?
   photoUrl String?
   chars Char[]
+  created_at DateTime
+  updated_at DateTime @default(now())
 }
 
 model Char {
@@ -24,6 +27,8 @@ model Char {
   owner User @relation(fields: [owner_id], references: [id])
   token_url String
   inventory Inventory?
+  created_at DateTime
+  updated_at DateTime @default(now())
 }
 
 model Inventory {
@@ -31,6 +36,8 @@ model Inventory {
   char_id Int @unique
   char Char @relation(fields: [char_id], references: [id])
   items Item[]
+  created_at DateTime
+  updated_at DateTime @default(now())
 }
 
 model Item {
@@ -39,4 +46,6 @@ model Item {
   description String
   owner_id Int
   owner Inventory @relation(fields: [owner_id], references: [id])
+  created_at DateTime
+  updated_at DateTime @default(now())
 }

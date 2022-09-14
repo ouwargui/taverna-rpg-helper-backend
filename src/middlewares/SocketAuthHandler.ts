@@ -7,6 +7,9 @@ const SocketAuthHandler = (io: Server) => {
       token: string;
     };
 
+    console.log(user);
+    console.log(token);
+
     if (!user || !token) {
       return next(new Error('Not authorized'));
     }
